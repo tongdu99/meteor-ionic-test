@@ -1,2 +1,4 @@
 # meteor-ionic-test
-a test project to use meteor-ionic to handle ionic tabs project
+Using meteor-ionic to convert a basic ionic tabas project to meteor.
+
+
