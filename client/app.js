@@ -2,6 +2,14 @@
 
 function onReady() {
     angular.bootstrap(document, ['starter']);
+
+    if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    }
+    if (window.StatusBar) {
+        // org.apache.cordova.statusbar required
+        StatusBar.styleLightContent();
+    }
 }
 
 if (Meteor.isCordova) {
@@ -69,6 +77,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         }
       }
     })
+      .state('tab.projects', {
+          url: '/projects',
+          views: {
+              'tab-projects': {
+                  templateUrl: 'client/templates/tab-projects.ng.html',
+                  controller: 'ProjectsCtrl'
+              }
+          }
+      })
     .state('tab.chat-detail', {
       url: '/chats/:chatId',
       views: {
@@ -93,3 +110,5 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   $urlRouterProvider.otherwise('/tab/dash');
 
 });
+
+Meteor.subscribe('Projects');
